@@ -1,0 +1,5 @@
+Arad Sibiu 149
+Zerind Arad 75
+Oradea Zerind 71
+Arad Timisoara 118
+Timisora Lugoj 111
