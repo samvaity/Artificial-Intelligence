@@ -1,5 +1,14 @@
-Arad Sibiu 149
-Zerind Arad 75
-Oradea Zerind 71
-Arad Timisoara 118
-Timisora Lugoj 111
+Arad,Sibiu,149
+Zerind,Arad,75
+Oradea,Zerind,71
+Arad,Timisoara,118
+Timisoara,Lugoj,111
+Sibiu,Fagaras,99
+Fagaras,Bucharest,211
+Pitesti,Bucharest,101
+Urziceni,Bucharest,85
+Lugoj,Mehadia,70
+Pitesti,Craiova,138
+Oradea,Sibiu,151
+Bucharest,Giurgiu,90
+Sibiu,Rimnicu Vilcea,80
