@@ -1,14 +1,23 @@
-Arad,Sibiu,149
-Zerind,Arad,75
-Oradea,Zerind,71
-Arad,Timisoara,118
-Timisoara,Lugoj,111
+Sibiu,Arad,140
 Sibiu,Fagaras,99
+Sibiu,Rimnicu Vilcea,80 
+Sibiu,Oradea,151
+Rimnicu Vilcea,Pitesti,97
+Rimnicu-Vilcea,Craiova,146
+Craiova,Drobeta,120
+Craiova,Pitesti,138
+Drobeta,Mehadia,75
 Fagaras,Bucharest,211
+Mehadia,Lugoj,70
+Lugoj,Timisoara,111
 Pitesti,Bucharest,101
-Urziceni,Bucharest,85
-Lugoj,Mehadia,70
-Pitesti,Craiova,138
-Oradea,Sibiu,151
 Bucharest,Giurgiu,90
-Sibiu,Rimnicu Vilcea,80
+Timisoara,Arad,118
+Bucharest,Urziceni,85
+Urziceni,Vaslui,142
+Urziceni,Hirsova,98
+Neamt,Iasi,87
+Iasi,Vaslui,92
+Hirsova,Eforie,86
+Zerind,Oradea,71
+Arad,Zerind,75

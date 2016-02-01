@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Stack;
 import java.util.Map.Entry;
 
 public class BFS {
@@ -93,10 +94,12 @@ public class BFS {
 	/* To print and calculate final path */
 	private static void findCostPath(int[][] pathCostArray, String to, HashMap<String, Integer> pathMap, String from) {
 		 StringBuilder finalPath = new StringBuilder(from);
-		System.out.println("BFS Path towards destination is  : ");
+		System.out.println("Path towards destination is  : ");
 		int sourceId = pathMap.get(from);
 		int destId = pathMap.get(to);
 		int finalCost = pathCostArray[destId][1];
+		Stack cities = new Stack();
+		
 		//String intermediateNode = null;
 		int intermediateId = pathCostArray[destId][0];
 
@@ -115,15 +118,21 @@ public class BFS {
 			for (Entry<String, Integer> e : pathMap.entrySet()) {
 				// intermediateNode = e.getKey();
 				if (intermediateId == e.getValue()) {
-					finalPath.append(" ---> " + e.getKey());
+					cities.push(e.getKey());
+					//finalPath.append(" ---> " + e.getKey());
 				}
 
 			}
 			finalCost = finalCost + pathCostArray[intermediateId][1];
 			intermediateId = pathCostArray[intermediateId][0];
 		}
-		finalPath.append(" ---> "+to);
-		System.out.println(finalPath);
+		while(!cities.isEmpty())
+		{
+		finalPath.append(" ---> "+cities.pop());
+		}
+		
+		System.out.println(finalPath+" ---> " +to);
+		//System.out.println(to);
 		System.out.println("Final Cost : " + finalCost);
 
 	}

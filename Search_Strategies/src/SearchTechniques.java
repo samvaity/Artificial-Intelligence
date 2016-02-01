@@ -16,7 +16,7 @@ public class SearchTechniques {
 		ArrayList<CityNode> lt = new ArrayList<CityNode>();
 		SearchTechniques st = new SearchTechniques();
 		File file = new File(st.getClass().getResource("/resources/input.txt").getFile());
-		
+
 		Scanner scanner = new Scanner(file);
 
 		HashMap<String, ArrayList> hm = new HashMap<String, ArrayList>();
@@ -26,7 +26,7 @@ public class SearchTechniques {
 			String[] strArray = str.split(",");
 			String from = strArray[0];
 			String to = strArray[1];
-			int cost = Integer.parseInt(strArray[2]);
+			int cost = Integer.parseInt(strArray[2].trim());
 
 			if (!hm.containsKey(from)) {
 				CityNode cn = new CityNode();
@@ -72,7 +72,7 @@ public class SearchTechniques {
 
 		}
 
-		System.out.println("Graph can be represented as: ");
+	/*	System.out.println("Graph can be represented as: ");
 		for (Map.Entry<String, ArrayList> m : hm.entrySet()) {
 			String from = m.getKey();
 			ArrayList<CityNode> temp = m.getValue();
@@ -84,75 +84,95 @@ public class SearchTechniques {
 				System.out.println();
 			}
 
-		}
-
-		Scanner reader = new Scanner(System.in);
-
-		System.out.println("Enter city 1 :");
-		String from = reader.nextLine();
-		if(!(checkIfExists(hm,from)))
-		{
-			System.out.println("Please enter a valid city!!");
-		}
-		
-
-		System.out.println("Enter city 2 :");
-		String to = reader.nextLine();
-		if(!(checkIfExists(hm,to)))
-		{
-			System.out.println("Please enter a valid city!!");
-		}
-
-		System.out.println("Enter search method number:\n 1. DFS \n 2. BFS \n 3. Iterative Deepening");
-		int searchMethod = reader.nextInt();
+		}*/
 
 		/* make all nodes as false */
-		initAllNodes(hm, from, to, searchMethod);
+		initAllNodes(hm);
 
 	}
 
-	private static  boolean checkIfExists(HashMap<String, ArrayList> hm, String city1) {
-		if (hm.containsKey(city1))
-		{
-			
+	private static boolean checkIfExists(HashMap<String, ArrayList> hm, String city) {
+		cityExists = false;
+		if (hm.containsKey(city)) {
+
 			return cityExists = true;
 		}
 		return cityExists;
 	}
 
 	/* Below 3 methods are for Searching techniques */
-	public static void initAllNodes(HashMap<String, ArrayList> h, String source, String destination, int searchMethod) {
+	public static void initAllNodes(HashMap<String, ArrayList> h) {
 
 		HashMap<String, Boolean> visited = new HashMap<String, Boolean>();
+		char ch = 'Y';
 
-		for (Map.Entry<String, ArrayList> m : h.entrySet()) {
-			String key = m.getKey();
-			visited.put(key, false);
-		}
+		do {
 
-		switch (searchMethod) {
-		case 1:
-			DFS dfs = new DFS();
-			dfs.dfsSearch(h, visited, source, destination, source);
-			if (!dfs.isDestFound())
-				System.out.println("Path does not exist using dfs");
-			break;
+			for (Map.Entry<String, ArrayList> m : h.entrySet()) {
+				String key = m.getKey();
+				visited.put(key, false);
+			}
 
-		case 2:
-			BFS bfs = new BFS();
-			bfs.bfsSearch(h, source, destination);
-			if (!bfs.isDestFound())
-				System.out.println("Path does not exist using bfs");
-			break;
+			Scanner reader = new Scanner(System.in);
 
-		case 3:
-			IDS ids = new IDS();
-			ids.iterativeDeepening(h, visited, source, destination, source);
-			if (!ids.isDestFound())
-				System.out.println("Path does not exist using ids");
+			System.out.println("Enter city 1 :");
+			String from = reader.nextLine();
+			if (!(checkIfExists(h, from))) {
+				System.out.println("Invalid city!!\n Do you want to continue/n Y/N");
+				ch = reader.next().charAt(0);
+				if (ch == 'Y' || ch == 'y') {
+					initAllNodes(h);
+				} else {
+					return;
+				}
+			}
 
-		}
+			System.out.println("Enter city 2 :");
+			String to = reader.nextLine();
+			if (!(checkIfExists(h, to))) {
+				System.out.println("Please enter a valid city!!");
+				System.out.println("Invalid city!!\n Do you want to continue/n Y/N");
+				ch = reader.next().charAt(0);
+				if (ch == 'Y' || ch == 'y') {
+					initAllNodes(h);
+				} else {
+					return;
+				}
+			}
 
+			System.out.println("Enter search method number:\n 1. DFS \n 2. BFS \n 3. Iterative Deepening");
+			int searchMethod = reader.nextInt();
+
+			switch (searchMethod) {
+			case 1:
+				DFS dfs = new DFS();
+				dfs.dfsSearch(h, visited, from, to, from);
+				if (!dfs.isDestFound())
+					System.out.println("Path does not exist using dfs");
+				break;
+
+			case 2:
+				BFS bfs = new BFS();
+				bfs.bfsSearch(h, from, to);
+				if (!bfs.isDestFound())
+					System.out.println("Path does not exist using bfs");
+				break;
+
+			case 3:
+				IDS ids = new IDS();
+				ids.iterativeDeepening(h, visited, from, to, from);
+				if (!ids.isDestFound())
+					System.out.println("Path does not exist using ids");
+				break;
+
+			default:
+				System.out.println("Incorrect option");
+
+			}
+
+			System.out.println("Do you want to continue? Y/N ");
+			ch = reader.next().charAt(0);
+		} while (ch == 'Y' || ch == 'y');
 	}
 
 	public void updatePath(String path, HashMap hshmap, String destination) {

@@ -48,7 +48,7 @@ public class DFS {
 							
 						if( !(Boolean)visited.get(temp.cname))
 						{
-							dfsSearch(h, visited, temp.cname ,destination,path+" "+tempCname);
+							dfsSearch(h, visited, temp.cname ,destination,path+","+tempCname);
 							
 						}
 						

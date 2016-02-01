@@ -63,7 +63,7 @@ public class IDS {
 					if (tempCname.equals(destination)) {
 						visited.put(tempCname, true);
 						// System.out.println("inside destination found");
-						path = path + " " + tempCname;
+						path = path + "," + tempCname;
 						// System.out.println(" intermediate cost :"+cost);
 						destFound = true;
 						st.updatePath(path, hm, destination);
@@ -74,7 +74,7 @@ public class IDS {
 						depth++;
 						// System.out.println("depth in before
 						// recursion"+depth);
-						recursive_dls(hm, visited, temp.cname, destination, path + " " + tempCname);
+						recursive_dls(hm, visited, temp.cname, destination, path + "," + tempCname);
 						depth--;
 						visited.put(temp.cname, false);
 					}
